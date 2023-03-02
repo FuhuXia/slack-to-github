@@ -63,7 +63,7 @@ for message in reversed(messages):
 
   issue_data['title'] = message['text']
   issue_data['body'] = f"Created from Slack message.\n\n## Slack Source\n\nSlack Message ID: [{message_id}](https://{WORKSPACE}/archives/{CHANNEL_ID}/{message_id})."
-  issue_data['labels'] = ["critical"]
+  # issue_data['labels'] = ["critical"]
 
   issue = repo.create_issue(**issue_data)
 
