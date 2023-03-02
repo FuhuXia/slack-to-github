@@ -27,7 +27,7 @@ jobs:
           # this is datagov-alerts channel
           SLACK_CHANNEL_ID: C04S08E7KBP
           SLACK_WORKSPACE: githubtestco.slack.com
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.USER_TOKEN }}
           GITHUB_OWNER: FuhuXia
           GITHUB_REPO: slack-to-github
           #TODO: remove this requirement
