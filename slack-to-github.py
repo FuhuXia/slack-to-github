@@ -35,7 +35,7 @@ repo = g.get_repo(f"{OWNER}/{REPO}")
 # get the last issue
 # this returns default 30 max 100 issues per page.
 issues = repo.get_issues(state="all", sort="created", direction="desc", creator=USER)
-last_message_id = issues[0].body[-19:-2] if issues else "p0000000000000000"
+last_message_id = issues[0].body[-19:-2] if issues.totalCount else "p0000000000000000"
 pattern = r"p\d{16}"
 match = re.match(pattern, last_message_id)
 
