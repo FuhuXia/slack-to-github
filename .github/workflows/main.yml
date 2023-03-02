@@ -1,0 +1,36 @@
+name: Slack to GitHub Issues
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '*/5 * * * *'
+
+jobs:
+  slack-to-github-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          pip install slack-sdk PyGithub
+
+      - name: Read Slack messages and create GitHub issues
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          # this is datagov-alerts channel
+          SLACK_CHANNEL_ID: C04S08E7KBP
+          SLACK_WORKSPACE: githubtestco.slack.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: FuhuXia
+          GITHUB_REPO: slack-to-github
+          #TODO: remove this requirement
+          GITHUB_USER: FuhuXia
+        run: |
+          python slack-to-github.py
